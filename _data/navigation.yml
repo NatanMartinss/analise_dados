@@ -1,0 +1,27 @@
+main:
+  - title: "Início"
+    url: /
+  - title: "Sobre"
+    url: /about/
+  - title: "Capítulos"
+    url: /chapters/
+
+capitulos:
+  - title: "Introdução"
+    url: /chapters/00_introducao/
+  - title: "Fundamentos"
+    url: /chapters/01_fundamentos/
+  - title: "Planilhas"
+    url: /chapters/02_planilhas/
+  - title: "Integridade dos Dados"
+    url: /chapters/03_integridade/
+  - title: "Limpeza de Dados"
+    url: /chapters/04_limpeza/
+  - title: "SQL Básico"
+    url: /chapters/05_sql/
+  - title: "Visualização e Comunicação"
+    url: /chapters/06_visualizacao/
+  - title: "Projeto e Portfólio"
+    url: /chapters/07_projeto/
+  - title: "Continuação da Jornada"
+    url: /chapters/08_continuacao/
