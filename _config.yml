@@ -2,7 +2,7 @@ title: "Apostila de Análise de Dados"
 description: "Do zero ao intermediário em Análise de Dados — com humor, prática e Minions."
 url: "https://NatanMartinss.github.io"
 baseurl: "/analise-dados-site"
-remote_theme: mmistakes/minimal-mistakes@4.24.0
+remote_theme: pages-themes/midnight@v0.2.0
 plugins:
   - jekyll-remote-theme
   - jekyll-paginate
@@ -13,14 +13,30 @@ plugins:
 author:
   name: Natan
   bio: "Desenvolvedor e aventureiro dos dados 🍌"
+
+# Configurações específicas do layout
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Estrutura dos capítulos
 defaults:
   - scope:
       path: "_chapters"
       type: "chapters"
     values:
-      layout: single
+      layout: default
       author_profile: false
       toc: true
       toc_sticky: true
-      sidebar:
-        nav: "capitulos"
+
+# Navegação lateral
+include:
+  - _chapters
+  - _data
+  - assets
+
+# Metadados de build
+paginate: 5
+permalink: pretty
