@@ -1,13 +1,15 @@
 title: "Apostila de Análise de Dados"
 description: "Do zero ao intermediário em Análise de Dados — com humor, prática e Minions."
-url: "https://SEU_USUARIO.github.io"
+url: "https://NatanMartinss.github.io"
 baseurl: "/analise-dados-site"
-theme: minimal-mistakes-jekyll
+remote_theme: mmistakes/minimal-mistakes@4.24.0
 plugins:
+  - jekyll-remote-theme
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-seo-tag
+
 author:
   name: Natan
   bio: "Desenvolvedor e aventureiro dos dados 🍌"
