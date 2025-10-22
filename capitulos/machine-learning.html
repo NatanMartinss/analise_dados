@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capítulo 6 - Introdução ao Machine Learning</title>
+  <link rel="stylesheet" href="style/style-pages.css" />
+</head>
+
+<body>
+  <header>
+    <h1>🤖 Capítulo 6 — Machine Learning (Aprendizado de Máquina)</h1>
+  </header>
+
+  <main>
+    <p><em>“A inteligência artificial não é um truque de mágica — é matemática, estatística e paciência.”</em></p>
+
+    <h2>🎯 O que é Machine Learning?</h2>
+    <p>
+      <strong>Machine Learning (ML)</strong> é o campo da ciência de dados que ensina computadores
+      a **aprender a partir de dados**, sem que precisemos programar cada regra manualmente.
+    </p>
+
+    <p>
+      Pense assim: em vez de dizer ao computador “se a temperatura for acima de 30, é quente”,
+      nós mostramos exemplos de temperaturas e deixamos ele **descobrir sozinho** o padrão que define o que é “quente”.
+    </p>
+
+    <div class="tip-box">
+      💡 <strong>Definição prática:</strong>  
+      Machine Learning é quando um programa melhora automaticamente sua performance conforme recebe mais dados.
+    </div>
+
+    <hr>
+
+    <h2>🧠 Mas... como uma máquina “aprende”?</h2>
+    <p>
+      Aprender, para uma máquina, significa **ajustar parâmetros matemáticos** até que suas previsões fiquem próximas da realidade.
+      Esses parâmetros são como “botõezinhos” internos que o modelo gira, testando combinações, até errar menos.
+    </p>
+
+    <pre class="pretty-code"><code>
+# Exemplo simbólico: uma máquina tentando prever notas de alunos
+erro = previsão - nota_real
+ajuste = taxa_de_aprendizado * erro
+peso = peso - ajuste
+    </code></pre>
+
+    <p>
+      Ela compara a previsão com o resultado real (isso é o <strong>erro</strong>), aprende com ele e ajusta.
+      Repetindo isso milhares de vezes, o modelo começa a "acertar" sozinho.
+    </p>
+
+    <div class="exercise-box">
+      🧩 <strong>Analogia:</strong>  
+      É como aprender a arremessar uma bola de basquete.  
+      No início, você erra várias vezes, mas ajusta a força e o ângulo até acertar o cesto.  
+      O modelo faz o mesmo — só que com números.
+    </div>
+
+    <hr>
+
+    <h2>📊 Regressão Linear — a base de tudo</h2>
+    <p>
+      A <strong>Regressão Linear</strong> é o primeiro passo do aprendizado supervisionado.
+      Ela tenta encontrar uma <strong>linha</strong> (ou equação) que melhor descreve a relação entre duas variáveis.
+    </p>
+
+    <h3>📐 Fórmula da reta:</h3>
+    <pre class="pretty-code"><code>
+y = a * x + b
+</code></pre>
+
+    <p>
+      Onde:
+      <ul>
+        <li><strong>y</strong> → variável dependente (o que queremos prever)</li>
+        <li><strong>x</strong> → variável independente (entrada)</li>
+        <li><strong>a</strong> → inclinação (o quanto y muda quando x muda)</li>
+        <li><strong>b</strong> → intercepto (ponto inicial)</li>
+      </ul>
+    </p>
+
+    <pre class="pretty-code"><code>
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Dados simulados: tamanho do imóvel (m²) e preço (em mil R$)
+x = np.array([40, 50, 60, 70, 80]).reshape(-1, 1)
+y = np.array([200, 250, 300, 350, 400])
+
+modelo = LinearRegression()
+modelo.fit(x, y)
+
+a = modelo.coef_[0]
+b = modelo.intercept_
+
+print(f"Equação: preço = {a:.2f} * tamanho + {b:.2f}")
+print(f"Predição para 65m²: {modelo.predict([[65]])[0]:.2f} mil R$")
+
+plt.scatter(x, y, color="#38bdf8", label="Dados reais")
+plt.plot(x, modelo.predict(x), color="#a855f7", label="Linha de Regressão")
+plt.legend(); plt.show()
+    </code></pre>
+
+    <div class="tip-box">
+      💡 <strong>Explicação:</strong>  
+      O modelo encontrou uma linha que “melhor se encaixa” nos dados.  
+      Essa linha é uma **equação aprendida** — e ela representa o conhecimento do modelo.
+    </div>
+
+    <hr>
+
+    <h2>🧩 A Matemática por Trás</h2>
+    <p>
+      O modelo tenta minimizar o erro, calculado pela fórmula:
+    </p>
+
+    <pre class="pretty-code"><code>
+Erro Quadrático Médio (MSE) = Σ (y_real - y_previsto)² / n
+</code></pre>
+
+    <p>
+      Ele ajusta os coeficientes (a e b) até que o MSE seja o menor possível.
+      Isso é feito por um processo chamado **gradiente descendente** — o modelo “desce” a montanha do erro até o vale mais baixo.
+    </p>
+
+    <div class="exercise-box">
+      🎯 <strong>Desafio:</strong>  
+      Crie uma regressão linear para prever o preço de carros a partir da quilometragem.  
+      Veja como os coeficientes mudam se você adicionar mais dados.
+    </div>
+
+    <hr>
+
+    <h2>🐍 Classificação — Decisões Automáticas</h2>
+    <p>
+      Na <strong>classificação</strong>, o objetivo é prever **categorias**, e não números.  
+      Por exemplo: “compra” ou “não compra”, “spam” ou “não spam”.
+    </p>
+
+    <h3>🌳 Árvores de Decisão</h3>
+    <p>
+      As Árvores de Decisão simulam o raciocínio humano:  
+      fazem perguntas (“a renda é alta?”) e seguem caminhos até chegar a uma conclusão.
+    </p>
+
+    <pre class="pretty-code"><code>
+from sklearn.tree import DecisionTreeClassifier
+
+X = [[22, 2000], [35, 3500], [45, 5000], [52, 5200], [23, 1800]]
+y = ["Não compra", "Compra", "Compra", "Compra", "Não compra"]
+
+modelo = DecisionTreeClassifier(max_depth=3)
+modelo.fit(X, y)
+
+pred = modelo.predict([[30, 3000]])
+print("Cliente com 30 anos e renda 3000 →", pred[0])
+    </code></pre>
+
+    <div class="tip-box">
+      💡 <strong>Como funciona:</strong>  
+      A árvore divide os dados em “ramos” até chegar a uma folha — a decisão final.  
+      Cada divisão reduz a incerteza (ou “entropia”) dos dados.
+    </div>
+
+    <hr>
+
+    <h2>🧮 Agrupamento — Descobrindo padrões ocultos</h2>
+    <p>
+      O <strong>K-Means</strong> é um algoritmo **não supervisionado**, usado para agrupar dados parecidos.
+      Ele não precisa de respostas — apenas dos próprios dados.
+    </p>
+
+    <pre class="pretty-code"><code>
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Dados aleatórios
+X = np.random.rand(100, 2)
+
+modelo = KMeans(n_clusters=3, random_state=42)
+modelo.fit(X)
+
+plt.scatter(X[:,0], X[:,1], c=modelo.labels_, cmap="viridis")
+plt.scatter(modelo.cluster_centers_[:,0], modelo.cluster_centers_[:,1], color="red", marker="x")
+plt.title("Agrupamento com K-Means")
+plt.show()
+    </code></pre>
+
+    <div class="tip-box">
+      💡 <strong>Como ele “aprende”:</strong>  
+      Ele escolhe pontos centrais (chamados de *centroides*) e move-os até que os grupos fiquem bem definidos.  
+      O objetivo é minimizar a distância entre os pontos e seus centroides.
+    </div>
+
+    <hr>
+
+    <h2>⚙️ Como o Python se encaixa nisso?</h2>
+    <p>
+      Python é a linguagem mais usada em IA porque combina **simplicidade** e **poder matemático**.
+      Bibliotecas como:
+    </p>
+    <ul>
+      <li><strong>NumPy</strong> — para cálculos vetoriais e matrizes</li>
+      <li><strong>Pandas</strong> — para manipulação de dados</li>
+      <li><strong>Matplotlib / Seaborn</strong> — para gráficos</li>
+      <li><strong>Scikit-learn</strong> — para algoritmos de ML prontos</li>
+      <li><strong>TensorFlow / PyTorch</strong> — para redes neurais e IA avançada</li>
+    </ul>
+
+    <div class="exercise-box">
+      🧠 <strong>Reflexão:</strong>  
+      Quando você escreve código em Python, você não “cria uma IA do zero” —  
+      você **usa bibliotecas** que encapsulam anos de pesquisa em algoritmos matemáticos complexos.
+    </div>
+
+    <hr>
+
+    <h2>🧩 Redes Neurais — o cérebro das máquinas</h2>
+    <p>
+      As redes neurais são inspiradas no funcionamento do cérebro humano.  
+      Elas aprendem ajustando pesos entre “neurônios” que processam sinais numéricos.
+    </p>
+
+    <pre class="pretty-code"><code>
+import tensorflow as tf
+from tensorflow.keras import layers
+
+modelo = tf.keras.Sequential([
+    layers.Dense(8, activation='relu', input_shape=(2,)),
+    layers.Dense(4, activation='relu'),
+    layers.Dense(1, activation='sigmoid')
+])
+
+modelo.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+modelo.summary()
+    </code></pre>
+
+    <div class="tip-box">
+      ⚙️ <strong>Interpretação:</strong>  
+      Cada camada transforma os dados de forma não linear —  
+      o modelo cria abstrações, entende padrões complexos e ajusta seus “pesos” com base no erro.
+    </div>
+
+    <hr>
+
+    <h2>🧭 Resumo do Capítulo</h2>
+    <ul>
+      <li>✅ Machine Learning aprende padrões a partir de dados</li>
+      <li>✅ Regressão linear explica a base matemática do aprendizado</li>
+      <li>✅ Árvores de decisão e K-Means permitem previsões e agrupamentos</li>
+      <li>✅ Python é o idioma universal da IA moderna</li>
+      <li>✅ Redes neurais são a base da inteligência artificial atual</li>
+    </ul>
+
+    <div class="tip-box">
+      🎓 <strong>Parabéns!</strong>  
+      Você agora entende não só como aplicar Machine Learning, mas **como ele pensa**.  
+      No próximo capítulo, vamos explorar o mundo do <strong>Big Data</strong> —  
+      onde tudo isso acontece em escala massiva. 🌍
+    </div>
+
+    <div class="chapter-nav">
+      <a href="estatistica.html" class="nav-link">← Capítulo 5: Estatística</a>
+      <a href="big-data.html" class="nav-link">Próximo: Big Data →</a>
+    </div>
+  </main>
+</body>
+</html>

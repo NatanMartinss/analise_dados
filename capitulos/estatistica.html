@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capítulo 5 - Estatística Aplicada</title>
+  <link rel="stylesheet" href="style/style-pages.css" />
+</head>
+
+<body>
+  <header>
+    <h1>📊 Capítulo 5 — Estatística Aplicada</h1>
+  </header>
+
+  <main>
+    <p><em>“Estatística é como um biquíni: o que ela revela é interessante, mas o que ela esconde é essencial.”</em></p>
+
+    <h2>🎯 Por que Estatística Importa</h2>
+    <p>
+      Imagine que você é gerente de vendas e precisa decidir:
+      <ul>
+        <li>Qual produto lançar primeiro?</li>
+        <li>Em que região investir mais?</li>
+        <li>Qual campanha de marketing funcionou melhor?</li>
+      </ul>
+      Sem estatística, você está apenas “chutando”.  
+      Com estatística, você <strong>decide com base em evidências</strong>. 🎯
+    </p>
+
+    <div class="tip-box">
+      💡 <strong>Mindset Estatístico:</strong>  
+      Não existe “sorte” ou “azar” nos negócios — existe padrão, tendência e probabilidade.  
+      Nosso papel é descobrir esses padrões.
+    </div>
+
+    <hr>
+
+    <h2>📈 Medidas de Tendência Central</h2>
+    <p>As medidas de tendência central resumem um conjunto de dados por um único valor representativo.</p>
+
+    <h3>👨‍👩‍👧‍👦 A Família das Médias</h3>
+    <p>As três mais conhecidas são:</p>
+    <ul>
+      <li><strong>Média:</strong> soma de todos os valores dividida pela quantidade de elementos.</li>
+      <li><strong>Mediana:</strong> valor central, ideal quando há valores extremos (outliers).</li>
+      <li><strong>Moda:</strong> o valor que mais se repete.</li>
+    </ul>
+
+    <pre class="pretty-code"><code>
+import numpy as np
+from scipy import stats
+
+salarios = [2000, 2500, 3000, 3200, 3500, 3800, 4000, 4200, 4500, 25000]
+
+media = np.mean(salarios)
+mediana = np.median(salarios)
+moda = stats.mode(salarios, keepdims=True).mode[0]
+
+print(f"📊 Média: R$ {media:,.2f}")
+print(f"🎯 Mediana: R$ {mediana:,.2f}")
+print(f"🔄 Moda: R$ {moda:,.2f}")
+    </code></pre>
+
+    <div class="exercise-box">
+      🧠 <strong>Exercício:</strong>  
+      Uma turma teve notas: [7, 8, 6, 9, 5, 8, 7, 10, 6, 8, 9, 4, 7, 8, 6]  
+      Calcule:
+      <ol>
+        <li>Média da turma</li>
+        <li>Mediana</li>
+        <li>Quantos alunos estão acima da média</li>
+        <li>Qual medida representa melhor o desempenho?</li>
+      </ol>
+    </div>
+
+    <hr>
+
+    <h2>📏 Medidas de Dispersão</h2>
+    <p>Enquanto as médias mostram o centro dos dados, as medidas de dispersão mostram o quanto eles se espalham.</p>
+
+    <h3>📊 Desvio Padrão e Variância</h3>
+    <pre class="pretty-code"><code>
+empresa_a = [4800, 4900, 5000, 5100, 5200]  # Estável
+empresa_b = [3000, 4000, 5000, 6000, 7000]  # Volátil
+
+desvio_a = np.std(empresa_a)
+desvio_b = np.std(empresa_b)
+
+print(f"Empresa A: {desvio_a:.2f}")
+print(f"Empresa B: {desvio_b:.2f}")
+    </code></pre>
+
+    <div class="tip-box">
+      💡 <strong>Desvio padrão</strong> mostra o quanto os dados se afastam da média.
+      Um desvio pequeno indica estabilidade; um grande indica alta variação.
+    </div>
+
+    <h3>📉 Coeficiente de Variação</h3>
+    <p>
+      Para comparar conjuntos diferentes, usamos o <strong>Coeficiente de Variação (CV)</strong>:
+      <code>CV = (Desvio / Média) × 100</code>.
+    </p>
+
+    <div class="exercise-box">
+      🧩 <strong>Exercício:</strong>  
+      Compare duas lojas e determine qual é mais estável em vendas usando o CV.
+    </div>
+
+    <hr>
+
+    <h2>📦 Quartis e Box Plot</h2>
+    <p>Os quartis dividem o conjunto de dados em quatro partes.  
+    O gráfico <strong>Box Plot</strong> mostra visualmente essa divisão e destaca outliers.</p>
+
+    <pre class="pretty-code"><code>
+import seaborn as sns
+import pandas as pd
+
+dados = {
+  "TI": np.random.normal(8000, 2000, 50),
+  "Vendas": np.random.normal(6000, 3000, 50),
+  "RH": np.random.normal(5000, 1000, 50),
+}
+
+df = pd.DataFrame(dados)
+sns.boxplot(data=df)
+plt.title("Distribuição Salarial por Departamento")
+plt.show()
+    </code></pre>
+
+    <div class="tip-box">
+      💡 <strong>Interpretação rápida:</strong>  
+      - A linha no meio da caixa é a mediana.  
+      - As bordas da caixa representam o 1º e 3º quartil.  
+      - Pontos isolados fora dos “bigodes” são outliers.
+    </div>
+
+    <hr>
+
+    <h2>🎲 Distribuições de Probabilidade</h2>
+    <h3>📈 Distribuição Normal — a “Rainha” das distribuições</h3>
+    <p>
+      A distribuição normal (ou curva de Gauss) é simétrica e representa a maioria dos fenômenos naturais.
+    </p>
+
+    <pre class="pretty-code"><code>
+alturas = np.random.normal(170, 10, 1000)
+plt.hist(alturas, bins=30, color="skyblue", alpha=0.7)
+plt.title("Distribuição Normal de Alturas")
+plt.xlabel("Altura (cm)")
+plt.ylabel("Frequência")
+plt.show()
+    </code></pre>
+
+    <p>
+      Em uma distribuição normal:
+      <ul>
+        <li>68% dos dados estão a ±1 desvio padrão da média</li>
+        <li>95% a ±2 desvios</li>
+        <li>99,7% a ±3 desvios</li>
+      </ul>
+    </p>
+
+    <div class="exercise-box">
+      🎯 <strong>Desafio:</strong>  
+      Gere uma distribuição de notas de 1000 alunos (média 7, desvio 1.5).  
+      Mostre o histograma e marque os limites de ±1σ e ±2σ.
+    </div>
+
+    <hr>
+
+    <h2>🏭 Aplicação Prática: Controle de Qualidade</h2>
+    <p>
+      Em fábricas, estatística é usada para detectar falhas de produção.
+    </p>
+
+    <pre class="pretty-code"><code>
+peso_ideal = 500
+tolerancia = 10
+pesos = np.random.normal(peso_ideal, 5, 200)
+
+validos = np.sum((pesos >= 490) & (pesos <= 510))
+print(f"Percentual dentro da especificação: {validos/len(pesos)*100:.1f}%")
+    </code></pre>
+
+    <div class="tip-box">
+      💡 <strong>Insight:</strong>  
+      Se a maioria das amostras está fora da faixa, o processo precisa ser recalibrado —  
+      estatística salva milhões em desperdício industrial!
+    </div>
+
+    <hr>
+
+    <h2>🧭 Resumo do Capítulo</h2>
+    <ul>
+      <li>✅ Média, mediana e moda mostram o centro dos dados</li>
+      <li>✅ Desvio padrão e CV mostram a variabilidade</li>
+      <li>✅ Quartis e Boxplot destacam outliers</li>
+      <li>✅ Distribuições normais ajudam a prever comportamentos</li>
+    </ul>
+
+    <div class="tip-box">
+      🎓 <strong>Parabéns!</strong>  
+      Agora você domina as bases da estatística aplicada.  
+      No próximo capítulo, entraremos no mundo do <strong>Machine Learning</strong> 🤖
+    </div>
+
+    <div class="chapter-nav">
+      <a href="visualizacao.html" class="nav-link">← Capítulo 4: Visualização</a>
+      <a href="machine-learning.html" class="nav-link">Capítulo 6: Machine Learning →</a>
+    </div>
+  </main>
+</body>
+</html>

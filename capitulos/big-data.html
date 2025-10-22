@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capítulo 7 - Big Data e Processamento em Escala</title>
+  <link rel="stylesheet" href="style/style-pages.css" />
+</head>
+
+<body>
+  <header>
+    <h1>🌍 Capítulo 7 — Big Data e Processamento em Escala</h1>
+  </header>
+
+  <main>
+    <p><em>“Big Data é como tentar beber água de um hidrante — o desafio não é encontrar dados, é lidar com o volume.”</em></p>
+
+    <h2>🎯 O que é Big Data?</h2>
+    <p>
+      <strong>Big Data</strong> é o termo usado para descrever o imenso volume, velocidade e variedade de dados
+      que o mundo moderno produz.  
+      Pense em tudo o que é gerado a cada segundo: cliques na web, sensores IoT, vídeos, fotos, mensagens, transações bancárias, registros médicos…
+    </p>
+    <p>
+      Nenhum sistema tradicional (como Excel ou MySQL) conseguiria lidar com essa avalanche.  
+      É aí que entram as arquiteturas de Big Data — ecossistemas feitos para processar **terabytes ou petabytes** de informação com rapidez e confiabilidade.
+    </p>
+
+    <div class="tip-box">
+      💡 <strong>Definição simples:</strong>  
+      Big Data é o conjunto de ferramentas e práticas para **coletar, armazenar, processar e analisar dados em escala massiva**.
+    </div>
+
+    <hr>
+
+    <h2>🧩 Os 5 V’s do Big Data</h2>
+    <p>Todo sistema de Big Data precisa lidar com cinco dimensões fundamentais:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>V</th>
+          <th>Descrição</th>
+          <th>Exemplo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Volume</strong></td>
+          <td>Milhões ou bilhões de registros gerados diariamente.</td>
+          <td>Logs de acesso, sensores de fábrica, redes sociais.</td>
+        </tr>
+        <tr>
+          <td><strong>Velocidade</strong></td>
+          <td>Dados chegando em tempo real, exigindo processamento instantâneo.</td>
+          <td>Monitoramento de tráfego, streaming, bolsas de valores.</td>
+        </tr>
+        <tr>
+          <td><strong>Variedade</strong></td>
+          <td>Diversos formatos: texto, áudio, vídeo, JSON, imagens.</td>
+          <td>Comentários, vídeos, PDFs, APIs, IoT.</td>
+        </tr>
+        <tr>
+          <td><strong>Veracidade</strong></td>
+          <td>Nem todo dado é confiável — é preciso limpar e validar.</td>
+          <td>Fake news, dados duplicados, sensores com falhas.</td>
+        </tr>
+        <tr>
+          <td><strong>Valor</strong></td>
+          <td>Extrair informação útil que gere impacto real.</td>
+          <td>Prever vendas, detectar fraudes, otimizar processos.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="exercise-box">
+      🧠 <strong>Reflexão:</strong>  
+      Dados sem valor são apenas ruído.  
+      Big Data não é sobre armazenar tudo — é sobre encontrar o que importa.
+    </div>
+
+    <hr>
+
+    <h2>🏗️ Arquitetura do Big Data</h2>
+    <p>
+      Um ecossistema de Big Data é como uma cidade organizada — cada parte tem uma função essencial:
+    </p>
+
+    <ul>
+      <li><strong>Coleta:</strong> APIs, logs, IoT, web scraping, streaming.</li>
+      <li><strong>Armazenamento:</strong> Bancos distribuídos (HDFS, S3, MongoDB, Cassandra).</li>
+      <li><strong>Processamento:</strong> Ferramentas que tratam e transformam os dados (Hadoop, Spark, Flink).</li>
+      <li><strong>Análise:</strong> SQL, Python, BI tools.</li>
+      <li><strong>Visualização:</strong> Dashboards e relatórios (Power BI, Tableau, Grafana).</li>
+    </ul>
+
+    <div class="tip-box">
+      💡 <strong>Dica:</strong>  
+      No mundo real, Big Data não é uma ferramenta só — é um **conjunto orquestrado** de tecnologias que trabalham juntas.
+    </div>
+
+    <hr>
+
+    <h2>⚙️ Processamento em Lote vs. Streaming</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Descrição</th>
+          <th>Ferramentas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Batch (Lote)</strong></td>
+          <td>Processa grandes volumes de dados periodicamente, em blocos.</td>
+          <td>Hadoop, Spark Batch, AWS Glue</td>
+        </tr>
+        <tr>
+          <td><strong>Streaming</strong></td>
+          <td>Processa dados em tempo real, à medida que chegam.</td>
+          <td>Kafka, Apache Flink, Spark Streaming</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="exercise-box">
+      🎯 <strong>Exemplo prático:</strong>  
+      - Batch: gerar relatório de vendas diárias às 00:00.  
+      - Streaming: detectar fraude bancária no momento da transação.
+    </div>
+
+    <hr>
+
+    <h2>💾 Armazenamento Distribuído</h2>
+    <p>
+      No Big Data, os dados são tão grandes que precisam ser divididos entre vários servidores (nós).
+      Esse modelo é chamado de <strong>computação distribuída</strong>.
+    </p>
+
+    <pre class="pretty-code"><code>
+# Exemplo conceitual
+DADOS_TOTAIS = dividir_em_blocos(arquivo_grande, tamanho=128MB)
+
+for bloco in DADOS_TOTAIS:
+    enviar_para_no(bloco)
+
+# Cada nó processa uma parte
+resultado_final = juntar_resultados()
+    </code></pre>
+
+    <p>
+      Essa lógica é o coração do <strong>Hadoop</strong>, um dos pioneiros do Big Data.
+      Ele usa o HDFS (Hadoop Distributed File System) para armazenar os blocos e o MapReduce para processá-los.
+    </p>
+
+    <div class="tip-box">
+      ⚙️ <strong>Resumo:</strong>  
+      Hadoop → armazena e processa em blocos distribuídos.  
+      Spark → processa na memória, mais rápido.
+    </div>
+
+    <hr>
+
+    <h2>🔥 Apache Spark — o motor moderno</h2>
+    <p>
+      O <strong>Apache Spark</strong> é a principal ferramenta de Big Data hoje.
+      Ele processa dados diretamente na memória RAM, evitando gravações em disco e acelerando o desempenho em até 100x.
+    </p>
+
+    <pre class="pretty-code"><code>
+from pyspark.sql import SparkSession
+
+# Cria sessão Spark
+spark = SparkSession.builder.appName("AnáliseDeVendas").getOrCreate()
+
+# Lê um CSV gigante
+dados = spark.read.csv("vendas.csv", header=True, inferSchema=True)
+
+# Exemplo: soma total de vendas por produto
+dados.groupBy("produto").sum("valor").show(10)
+    </code></pre>
+
+    <p>
+      O Spark distribui automaticamente as tarefas pelos nós do cluster — você escreve Python, mas executa em dezenas de servidores.
+    </p>
+
+    <div class="exercise-box">
+      🧮 <strong>Exercício:</strong>  
+      Tente criar uma agregação no Spark: média de vendas por região.  
+      Compare o tempo de execução com o Pandas em Python.
+    </div>
+
+    <hr>
+
+    <h2>📦 Data Lakes e Data Warehouses</h2>
+    <p>
+      Para armazenar grandes volumes de informação, usamos dois conceitos principais:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Descrição</th>
+          <th>Uso Ideal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Data Lake</strong></td>
+          <td>Armazena dados crus, sem estrutura (JSON, logs, CSVs).</td>
+          <td>Análises exploratórias e machine learning.</td>
+        </tr>
+        <tr>
+          <td><strong>Data Warehouse</strong></td>
+          <td>Armazena dados limpos e estruturados, prontos para consulta.</td>
+          <td>Relatórios empresariais e dashboards.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tip-box">
+      💧 <strong>Analogia:</strong>  
+      O <em>Data Lake</em> é o lago bruto da informação.  
+      O <em>Data Warehouse</em> é a água filtrada e engarrafada — pronta para ser usada.
+    </div>
+
+    <hr>
+
+    <h2>🤖 Machine Learning com Big Data</h2>
+    <p>
+      O Spark também permite treinar modelos de <strong>Machine Learning</strong> em escala com a biblioteca <strong>MLlib</strong>.
+      Isso une o poder do aprendizado de máquina à capacidade de processamento massivo.
+    </p>
+
+    <pre class="pretty-code"><code>
+from pyspark.ml.regression import LinearRegression
+from pyspark.ml.feature import VectorAssembler
+
+dados = spark.read.csv("imoveis.csv", header=True, inferSchema=True)
+
+assembler = VectorAssembler(inputCols=["area", "quartos"], outputCol="features")
+dados_prep = assembler.transform(dados)
+
+modelo = LinearRegression(featuresCol="features", labelCol="preco").fit(dados_prep)
+print("Coeficientes:", modelo.coefficients)
+print("Intercepto:", modelo.intercept)
+    </code></pre>
+
+    <div class="tip-box">
+      🧠 <strong>Insight:</strong>  
+      Aqui, o Spark distribui o treino do modelo entre vários nós, processando milhões de linhas de forma paralela.
+    </div>
+
+    <hr>
+
+    <h2>🌐 Ecossistemas Modernos</h2>
+    <p>
+      Hoje, o Big Data está presente em diversas plataformas e serviços em nuvem:
+    </p>
+
+    <ul>
+      <li><strong>AWS:</strong> Redshift, EMR, Athena, Kinesis.</li>
+      <li><strong>Google Cloud:</strong> BigQuery, DataProc, Pub/Sub.</li>
+      <li><strong>Azure:</strong> Synapse, Data Lake Storage, Stream Analytics.</li>
+    </ul>
+
+    <div class="exercise-box">
+      🔍 <strong>Desafio:</strong>  
+      Escolha uma dessas plataformas e explore sua documentação de Big Data.  
+      Monte um diagrama simples com a arquitetura do pipeline de dados.
+    </div>
+
+    <hr>
+
+    <h2>📊 Casos de Uso Reais</h2>
+    <ul>
+      <li>🚗 <strong>Uber:</strong> analisa milhões de corridas por segundo para ajustar preços dinâmicos.</li>
+      <li>🏥 <strong>Hospitais:</strong> usam streaming para prever emergências médicas em tempo real.</li>
+      <li>🛒 <strong>Amazon:</strong> processa trilhões de cliques para sugerir produtos.</li>
+      <li>💳 <strong>Bancos:</strong> detectam fraudes em milissegundos com análise em fluxo contínuo.</li>
+    </ul>
+
+    <hr>
+
+    <h2>🧭 Resumo do Capítulo</h2>
+    <ul>
+      <li>✅ Big Data lida com grandes volumes e velocidades de dados.</li>
+      <li>✅ Processamento pode ser em lote (batch) ou em tempo real (streaming).</li>
+      <li>✅ Hadoop e Spark são as bases do ecossistema moderno.</li>
+      <li>✅ Data Lakes guardam dados crus; Data Warehouses, dados tratados.</li>
+      <li>✅ Machine Learning e Big Data se unem no Spark MLlib.</li>
+    </ul>
+
+    <div class="tip-box">
+      🎓 <strong>Parabéns!</strong>  
+      Agora você domina os fundamentos do Big Data —  
+      da arquitetura ao processamento e à inteligência aplicada.  
+      No próximo capítulo, vamos transformar esses dados em **dashboards interativos e storytelling visual.**
+    </div>
+
+    <div class="chapter-nav">
+      <a href="machine-learning.html" class="nav-link">← Capítulo 6: Machine Learning</a>
+      <a href="dashboards.html" class="nav-link">Próximo: Dashboards →</a>
+    </div>
+  </main>
+</body>
+</html>

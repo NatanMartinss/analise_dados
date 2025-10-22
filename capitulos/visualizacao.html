@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capítulo 4 - Visualização de Dados</title>
+  <link rel="stylesheet" href="style/style-pages.css" />
+</head>
+
+<body>
+  <header>
+    <h1>📊 Capítulo 4 — Visualização de Dados</h1>
+  </header>
+
+  <main>
+    <h2>🎨 A Arte de Contar Histórias com Dados</h2>
+    <p>
+      Visualizar dados é transformar números em narrativas.  
+      Um gráfico bem feito pode revelar padrões que passariam despercebidos em uma tabela.  
+      É aqui que a <strong>análise encontra o design</strong> — e você começa a ver os dados “falarem”.
+    </p>
+
+    <div class="tip-box">
+      💡 <strong>Regra de Ouro:</strong> seu gráfico deve contar uma história em até 3 segundos.
+      Se a pessoa precisar pensar muito, algo precisa ser simplificado.
+    </div>
+
+    <h2>🎯 Escolhendo o Gráfico Certo</h2>
+<p>Nem todo dado deve virar gráfico de pizza, e nem toda linha conta uma boa história.  
+Veja um guia rápido:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>🎯 Objetivo</th>
+      <th>📈 Gráfico Ideal</th>
+      <th>⚠️ Evite se...</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Comparar valores</td>
+      <td>📊 Barras</td>
+      <td>Mais de 10 categorias</td>
+    </tr>
+    <tr>
+      <td>Mostrar evolução</td>
+      <td>📈 Linha</td>
+      <td>Dados não temporais</td>
+    </tr>
+    <tr>
+      <td>Mostrar proporções</td>
+      <td>🥧 Pizza</td>
+      <td>Mais de 5 fatias</td>
+    </tr>
+    <tr>
+      <td>Mostrar correlação</td>
+      <td>🔵 Dispersão</td>
+      <td>Sem relação clara</td>
+    </tr>
+    <tr>
+      <td>Mostrar densidade</td>
+      <td>🌡️ Heatmap</td>
+      <td>Poucos dados</td>
+    </tr>
+  </tbody>
+</table>
+
+
+    <hr>
+
+    <h2>📊 Gráficos de Barras</h2>
+    <p>O tipo mais direto — perfeito para comparações entre categorias.</p>
+
+    <pre class="pretty-code"><code>
+import matplotlib.pyplot as plt
+
+categorias = ["Produto A", "Produto B", "Produto C"]
+vendas = [3500, 2700, 4200]
+
+plt.bar(categorias, vendas, color="skyblue")
+plt.title("Vendas por Produto")
+plt.ylabel("Unidades Vendidas")
+plt.show()
+    </code></pre>
+
+    <div class="exercise-box">
+      🧠 <strong>Exercício:</strong>  
+      Crie um gráfico de barras mostrando o número de atendimentos por especialidade médica em um mês.
+    </div>
+
+    <hr>
+
+    <h2>📈 Gráficos de Linha</h2>
+    <p>Gráficos de linha são ideais para representar evolução ao longo do tempo.</p>
+
+    <pre class="pretty-code"><code>
+meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"]
+vendas = [1000, 1200, 900, 1400, 1600, 2000]
+
+plt.plot(meses, vendas, color="cyan", marker="o", linewidth=2)
+plt.title("Evolução das Vendas")
+plt.xlabel("Mês")
+plt.ylabel("Vendas (R$)")
+plt.grid(True)
+plt.show()
+    </code></pre>
+
+    <div class="tip-box">
+      💡 <strong>Dica:</strong> use <code>plt.fill_between()</code> para preencher a área entre a linha e o eixo — ótimo para destacar crescimento ou queda.
+    </div>
+
+    <hr>
+
+    <h2>🥧 Gráficos de Pizza</h2>
+    <p>Úteis para representar proporções de um todo, mas cuidado com o exagero.</p>
+
+    <pre class="pretty-code"><code>
+categorias = ["Marketing", "RH", "Vendas", "TI"]
+valores = [25, 15, 40, 20]
+
+plt.pie(valores, labels=categorias, autopct="%1.1f%%", startangle=90)
+plt.title("Distribuição Orçamentária")
+plt.show()
+    </code></pre>
+
+    <div class="exercise-box">
+      🎯 <strong>Desafio:</strong>  
+      Mostre a porcentagem de dispositivos usados por usuários (Desktop, Mobile, Tablet).  
+      Dê destaque ao Mobile com o parâmetro <code>explode</code>.
+    </div>
+
+    <hr>
+
+    <h2>🔵 Gráficos de Dispersão</h2>
+    <p>Usado para mostrar relação entre duas variáveis numéricas — ótimo para encontrar padrões escondidos.</p>
+
+    <pre class="pretty-code"><code>
+import numpy as np
+
+x = np.random.randint(50, 150, 50)
+y = x * np.random.uniform(0.8, 1.2, 50)
+
+plt.scatter(x, y, color="violet", alpha=0.6)
+plt.title("Correlação entre Variáveis")
+plt.xlabel("Variável X")
+plt.ylabel("Variável Y")
+plt.show()
+    </code></pre>
+
+    <div class="tip-box">
+      💡 <strong>Dica:</strong> use <code>np.corrcoef(x, y)</code> para medir o quanto as variáveis estão relacionadas.
+    </div>
+
+    <hr>
+
+    <h2>🌡️ Heatmaps (Mapas de Calor)</h2>
+    <p>Mapas de calor mostram a intensidade de valores em uma matriz — excelentes para visualização de correlação.</p>
+
+    <pre class="pretty-code"><code>
+import seaborn as sns
+import pandas as pd
+
+dados = pd.DataFrame({
+    "Vendas": np.random.randint(50, 150, 10),
+    "Lucro": np.random.randint(10, 100, 10),
+    "Satisfação": np.random.randint(1, 10, 10)
+})
+
+sns.heatmap(dados.corr(), annot=True, cmap="coolwarm")
+plt.title("Correlação entre Variáveis")
+plt.show()
+    </code></pre>
+
+    <div class="exercise-box">
+      🔥 <strong>Exercício:</strong>  
+      Gere um heatmap que mostre as correlações entre variáveis financeiras de uma empresa.
+    </div>
+
+    <hr>
+
+    <h2>🎨 Customizando Estilo</h2>
+    <p>
+      Um bom gráfico não é só funcional, mas também agradável visualmente.
+      O <code>Matplotlib</code> permite temas e ajustes finos de cores e grades:
+    </p>
+
+    <pre class="pretty-code"><code>
+plt.style.use("seaborn-v0_8-darkgrid")
+plt.rcParams["figure.figsize"] = (10, 6)
+plt.rcParams["axes.titlesize"] = 16
+plt.rcParams["axes.labelcolor"] = "white"
+plt.rcParams["text.color"] = "white"
+    </code></pre>
+
+    <p>Esses ajustes dão personalidade e coerência visual à sua análise.</p>
+
+    <hr>
+
+    <h2>🚀 Projeto Final: Dashboard de Desempenho</h2>
+    <p>
+      Combine tudo que aprendeu para criar um painel visual que apresente:
+    </p>
+    <ul>
+      <li>Gráfico de linha com evolução de vendas</li>
+      <li>Gráfico de barras comparando regiões</li>
+      <li>Gráfico de pizza mostrando distribuição de produtos</li>
+    </ul>
+
+    <div class="tip-box">
+      🎉 <strong>Dica Avançada:</strong> explore o <code>Plotly</code> e o <code>Streamlit</code>
+      para criar dashboards interativos e em tempo real.
+    </div>
+
+    <div class="chapter-nav">
+      <a href="python.html" class="nav-link">← Capítulo 3: Python</a>
+      <a href="estatistica.html" class="nav-link">Próximo: Estatística →</a>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capítulo 2 - Planilhas: Excel e Google Sheets</title>
+  <link rel="stylesheet" href="style/style-pages.css" />
+</head>
+
+<body>
+  <header>
+    <h1>📊 Capítulo 2 — Planilhas: Excel e Google Sheets</h1>
+  </header>
+
+  <main>
+    <h2>🦸‍♀️ Prepare-se para se tornar um ninja das planilhas!</h2>
+    <p>Excel e Google Sheets são o coração da análise de dados no mundo real. Mesmo com linguagens como Python e SQL dominando o mercado, é nas planilhas que a mágica começa — e muitas vezes termina também.</p>
+
+    <div class="tip-box">
+      💡 <strong>Dica rápida:</strong> Planilhas são a ponte entre o mundo humano e o mundo dos dados.  
+      Entender bem esse universo é o primeiro passo para se tornar um verdadeiro analista.
+    </div>
+
+    <h2>🎯 O que você vai dominar</h2>
+    <ul>
+      <li>Entender o que são células, colunas e linhas</li>
+      <li>Usar fórmulas com eficiência</li>
+      <li>Dominar funções de busca e referência (como o famoso PROCV)</li>
+      <li>Aplicar filtros e classificações inteligentes</li>
+      <li>Criar gráficos e dashboards</li>
+      <li>Trabalhar com Tabelas Dinâmicas</li>
+      <li>Automatizar tarefas e validar dados</li>
+    </ul>
+
+    <hr>
+
+    <h2>🚀 Anatomia de uma planilha</h2>
+    <p>Antes de sair aplicando fórmulas, é importante entender a estrutura da planilha:</p>
+    <ul>
+      <li><strong>Célula:</strong> é o menor elemento de uma planilha, identificada por uma combinação de <em>coluna + linha</em> (ex: A1, B2, C5).</li>
+      <li><strong>Coluna:</strong> representada por letras (A, B, C...).</li>
+      <li><strong>Linha:</strong> representada por números (1, 2, 3...).</li>
+      <li><strong>Intervalo:</strong> um conjunto de células (ex: A1:A10).</li>
+    </ul>
+
+    <div class="exercise-box">
+      🎮 <strong>Exercício 1:</strong>  
+      Abra uma planilha nova e identifique os intervalos:  
+      <ul>
+        <li>De A1 até A10</li>
+        <li>De B2 até F2</li>
+        <li>De C3 até D7</li>
+      </ul>
+      Isso é importante, pois toda fórmula se baseia em intervalos.
+    </div>
+
+    <hr>
+
+    <h2>🧭 Buscas Dimensionais: 1D, 2D, 3D e Além</h2>
+    <p>Buscar informações é a alma da análise de dados. Toda planilha — do controle de gastos até o BI corporativo — se resume a procurar e cruzar informações.  
+    E pra isso, precisamos entender o conceito de <strong>buscas dimensionais</strong>.</p>
+
+    <h3>📍 1D — Busca Unidimensional</h3>
+    <p>É a busca mais simples: você procura um valor em uma <strong>única direção</strong>, seja vertical (coluna) ou horizontal (linha).</p>
+    <ul>
+      <li><strong>Vertical (coluna):</strong> usada no <code>PROCV</code> — procura de cima pra baixo.</li>
+      <li><strong>Horizontal (linha):</strong> usada no <code>PROCH</code> — procura da esquerda pra direita.</li>
+    </ul>
+
+    <pre><code>=PROCV("João"; A2:D100; 3; FALSO)
+=PROCH("Março"; A1:H5; 2; FALSO)</code></pre>
+
+    <div class="tip-box">
+      💡 <strong>Lembrete:</strong> o PROCV só enxerga da esquerda para a direita.  
+      Se precisar buscar o contrário, você vai precisar de outra técnica.
+    </div>
+
+    <hr>
+
+    <h3>📊 2D — Busca Bidimensional</h3>
+    <p>Agora estamos falando de tabelas: valores organizados por <strong>linhas e colunas</strong>.  
+    Uma busca bidimensional identifica uma célula usando dois critérios — por exemplo, “Produto X” (linha) e “Março” (coluna).</p>
+
+    <pre><code>=ÍNDICE(B2:E10; CORRESP("Produto X";A2:A10;0); CORRESP("Março";B1:E1;0))</code></pre>
+
+    <p>Nesse caso:</p>
+    <ul>
+      <li><code>CORRESP("Produto X";A2:A10;0)</code> → localiza a linha do produto.</li>
+      <li><code>CORRESP("Março";B1:E1;0)</code> → localiza a coluna do mês.</li>
+      <li><code>ÍNDICE(...)</code> → retorna o valor na interseção dessas coordenadas.</li>
+    </ul>
+
+    <div class="exercise-box">
+      🧩 <strong>Exemplo prático:</strong>  
+      Em uma tabela de vendas, encontre o valor do Produto A no mês de Fevereiro.  
+      <pre><code>=ÍNDICE(B2:E10; CORRESP("Produto A";A2:A10;0); CORRESP("Fevereiro";B1:E1;0))</code></pre>
+    </div>
+
+    <hr>
+
+    <h3>🧱 3D — Busca Tridimensional</h3>
+    <p>Quando trabalhamos com várias <strong>abas</strong> (por exemplo: uma por mês), estamos lidando com dados tridimensionais — linha, coluna e planilha.</p>
+
+    <pre><code>=SOMA(Janeiro:Dezembro!B2)</code></pre>
+
+    <p>Essa fórmula soma automaticamente o valor da célula B2 em todas as abas de Janeiro até Dezembro.</p>
+
+    <div class="tip-box">
+      💡 <strong>Uso comum:</strong> consolidar vendas, despesas ou indicadores de várias planilhas mensais em um único resumo.
+    </div>
+
+    <hr>
+
+    <h3>🌐 4D e Além — O Mundo dos Cubos de Dados</h3>
+    <p>Em ferramentas avançadas (como Power BI, Tableau ou bancos OLAP), falamos de buscas <strong>multidimensionais</strong>.  
+    São como planilhas com centenas de eixos: produto, tempo, região, vendedor, canal, categoria, etc.</p>
+
+    <p>Esses modelos permitem cruzar dados em infinitas direções e são o que chamamos de <strong>cubos de dados</strong>.</p>
+
+    <div class="tip-box">
+      💡 <strong>Resumo prático:</strong><br>
+      1D → uma direção (coluna ou linha)<br>
+      2D → linha + coluna<br>
+      3D → linha + coluna + aba<br>
+      4D+ → análise de várias dimensões (cubos de dados)
+    </div>
+
+    <hr>
+
+    <h2>🧮 Funções Essenciais</h2>
+    <h3>1️⃣ Funções Matemáticas</h3>
+    <p>São as fórmulas mais básicas, mas também as mais usadas. Você vai aplicá-las em praticamente todo projeto.</p>
+
+    <pre><code>=SOMA(A1:A10)     → soma os valores de A1 até A10
+=MÉDIA(B1:B20)    → calcula a média
+=MÁXIMO(C1:C100)  → retorna o maior valor
+=MÍNIMO(C1:C100)  → retorna o menor valor</code></pre>
+
+    <h3>2️⃣ Funções de Contagem</h3>
+    <p>Essas fórmulas contam quantos itens atendem a um determinado critério.</p>
+    <pre><code>=CONT.NÚM(A1:A50)                   → conta números
+=CONT.SE(D1:D100,">1000")            → conta valores maiores que 1000
+=CONT.SES(A1:A100,">18",B1:B100,"M") → múltiplas condições</code></pre>
+
+    <h3>3️⃣ Funções Condicionais</h3>
+    <pre><code>=SE(A1>1000,"Alto","Baixo")
+=SE(B1>=7,"Aprovado","Reprovado")</code></pre>
+
+    <div class="exercise-box">
+      🎯 <strong>Exercício:</strong> Crie uma planilha com Nome, Nota 1, Nota 2 e Média.  
+      Use:
+      <pre><code>=MÉDIA(B2:C2)
+=SE(D2>=7,"Aprovado","Reprovado")</code></pre>
+    </div>
+
+    <hr>
+
+    <h2>🔍 PROCV, ÍNDICE e CORRESP — Os Mestres da Busca</h2>
+    <p>Essas três funções são o núcleo da inteligência analítica em planilhas. Elas permitem <strong>cruzar bases, buscar informações e automatizar relatórios</strong>.</p>
+
+    <h3>📗 PROCV — Procura Vertical</h3>
+    <p>O PROCV busca um valor em uma coluna e retorna o dado correspondente de outra.</p>
+
+    <pre><code>=PROCV(valor_procurado; intervalo; número_da_coluna; [procurar_exato])</code></pre>
+
+    <p><strong>Exemplo:</strong></p>
+    <pre><code>=PROCV("João"; A2:D100; 3; FALSO)</code></pre>
+
+    <div class="tip-box">
+      💡 <strong>Dica:</strong> o último argumento <code>FALSO</code> significa “busca exata”.  
+      Se usar <code>VERDADEIRO</code>, ele retorna o valor mais próximo (útil em faixas de preço ou notas).
+    </div>
+
+    <hr>
+
+    <h3>⚙️ ÍNDICE + CORRESP — O Combo Supremo</h3>
+    <p>Essa dupla substitui e supera o PROCV. Ela permite buscas horizontais, verticais e até cruzadas entre abas.</p>
+
+    <pre><code>=ÍNDICE(intervalo; linha; [coluna])
+=CORRESP(valor_procurado; intervalo; [tipo])</code></pre>
+
+    <p><strong>Exemplo:</strong></p>
+    <pre><code>=ÍNDICE(C2:C100; CORRESP("João"; A2:A100; 0))</code></pre>
+    <p>A função <code>CORRESP</code> encontra a posição do nome “João”, e <code>ÍNDICE</code> retorna o valor correspondente da coluna C.</p>
+
+    <div class="exercise-box">
+      🧩 <strong>Desafio:</strong>  
+      Monte uma planilha de clientes e idades. Depois, use <code>ÍNDICE</code> + <code>CORRESP</code> para exibir a idade ao digitar o nome.
+    </div>
+
+    <hr>
+
+    <h2>🏗️ Tabelas Dinâmicas — O Santo Graal</h2>
+    <p>As tabelas dinâmicas permitem resumir, agrupar e analisar grandes volumes de dados com poucos cliques.</p>
+
+    <pre><code>Excel → Inserir → Tabela Dinâmica
+Sheets → Inserir → Tabela Dinâmica</code></pre>
+
+    <p>Você pode criar resumos como:</p>
+    <ul>
+      <li>Vendas por produto</li>
+      <li>Despesas por categoria</li>
+      <li>Clientes por cidade</li>
+    </ul>
+
+    <div class="tip-box">
+      💡 Combine Tabelas Dinâmicas com gráficos dinâmicos e você terá dashboards automáticos.
+    </div>
+
+    <hr>
+
+    <h2>⚡ Automação e Validação de Dados</h2>
+    <ul>
+      <li><strong>Formatação condicional:</strong> destaque valores automaticamente</li>
+      <li><strong>Validação de dados:</strong> crie listas suspensas e evite erros</li>
+      <li><strong>SEERRO:</strong> limpa resultados de buscas vazias</li>
+    </ul>
+
+    <pre><code>=SEERRO(PROCV(A2;Tabela!A:C;2;FALSO);"Não encontrado")</code></pre>
+
+    <div class="exercise-box">
+      🎯 <strong>Exercício:</strong>  
+      Crie uma planilha de estoque com:
+      <ul>
+        <li>Planilha de produtos</li>
+        <li>Planilha de movimentações</li>
+        <li>Dashboard com gráficos e alertas automáticos</li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <h2>📈 Dashboards e Visualização</h2>
+    <p>Com os recursos que você aprendeu, é possível criar dashboards visuais e interativos apenas com Excel ou Sheets — sem precisar programar.</p>
+
+    <ul>
+      <li>Gráficos de colunas para comparações</li>
+      <li>Linhas para tendências</li>
+      <li>Pizza para proporções</li>
+      <li>Segmentadores para filtros rápidos</li>
+    </ul>
+
+    <div class="tip-box">
+      💡 <strong>Dica de ouro:</strong> dashboards bons não são os mais coloridos — são os mais claros.
+    </div>
+
+    <hr>
+
+    <h2>🧠 Resumo do Capítulo</h2>
+    <ul>
+      <li>✅ Planilhas são a base da análise de dados</li>
+      <li>✅ PROCV = buscas verticais simples</li>
+      <li>✅ ÍNDICE + CORRESP = buscas bidimensionais poderosas</li>
+      <li>✅ Tabelas Dinâmicas resumem grandes volumes</li>
+      <li>✅ Validação e automação reduzem erros</li>
+    </ul>
+
+    <div class="tip-box">
+      🎉 <strong>Parabéns!</strong>  
+      Agora você domina as planilhas como um verdadeiro analista.  
+      No próximo capítulo, vamos mergulhar em **Python para análise de dados** 🐍
+    </div>
+
+    <div class="chapter-nav">
+      <a href="fundamentos.html" class="nav-link">← Capítulo 1: Fundamentos</a>
+      <a href="python.html" class="nav-link">Próximo: Python →</a>
+    </div>
+  </main>
+</body>
+</html>

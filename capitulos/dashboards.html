@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capítulo 8 - Dashboards e Storytelling com Dados</title>
+  <link rel="stylesheet" href="style/style-pages.css" />
+</head>
+
+<body>
+  <header>
+    <h1>📊 Capítulo 8 — Dashboards e Storytelling com Dados</h1>
+  </header>
+
+  <main>
+    <p><em>“Dados bem apresentados contam uma história. Dados mal apresentados... confundem todo mundo.”</em></p>
+
+    <h2>🎯 O que é um Dashboard?</h2>
+    <p>
+      Um <strong>dashboard</strong> é um painel visual que resume dados importantes e transforma planilhas e tabelas
+      em <strong>insights rápidos</strong>. Ele é o ponto onde a análise encontra o design — e onde números passam a fazer sentido.
+    </p>
+
+    <div class="tip-box">
+      💡 <strong>Definição simples:</strong>  
+      Dashboard é um painel interativo que traduz dados em decisões.
+    </div>
+
+    <hr>
+
+    <h2>🧩 Tipos de Dashboards</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Objetivo</th>
+          <th>Exemplo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Operacional</strong></td>
+          <td>Monitora métricas em tempo real.</td>
+          <td>Pedidos por minuto, status de sistemas.</td>
+        </tr>
+        <tr>
+          <td><strong>Tático</strong></td>
+          <td>Acompanha metas e indicadores de médio prazo.</td>
+          <td>Desempenho semanal de vendas.</td>
+        </tr>
+        <tr>
+          <td><strong>Estratégico</strong></td>
+          <td>Ajuda na tomada de decisão de longo prazo.</td>
+          <td>Indicadores de crescimento, churn, receita.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tip-box">
+      🎨 <strong>Dica:</strong>  
+      Antes de criar o dashboard, defina <em>“para quem”</em> e <em>“para quê”</em> ele serve.
+    </div>
+
+    <hr>
+
+    <h2>🏗️ Etapas da Criação de um Dashboard</h2>
+    <ol>
+      <li>Defina o objetivo (qual pergunta o dashboard deve responder?)</li>
+      <li>Escolha as métricas (KPIs) certas</li>
+      <li>Limpe e modele os dados</li>
+      <li>Escolha a ferramenta (Power BI, Google Data Studio, Streamlit...)</li>
+      <li>Projete o layout visual</li>
+      <li>Teste e otimize a experiência do usuário</li>
+    </ol>
+
+    <div class="exercise-box">
+      🧠 <strong>Desafio:</strong>  
+      Monte um esboço no papel do seu dashboard ideal.  
+      Quais gráficos e informações realmente ajudam a tomar decisões?
+    </div>
+
+    <hr>
+
+    <h2>🎨 Princípios de Design de Informação</h2>
+    <p>Inspirado nos mestres <strong>Edward Tufte</strong> e <strong>Cole Knaflic</strong>, aqui estão as regras de ouro:</p>
+
+    <ul>
+      <li>🚫 Evite poluição visual — menos é mais</li>
+      <li>🎯 Cada elemento deve ter propósito</li>
+      <li>🎨 Use cores com intenção (não por estética)</li>
+      <li>🧩 Destaque o que importa — contraste e hierarquia</li>
+      <li>📖 Construa uma narrativa — inicie com contexto, mostre o problema e conclua com insight</li>
+    </ul>
+
+    <div class="tip-box">
+      💬 <strong>Regra de ouro:</strong>  
+      “Se um gráfico precisa de legenda para ser entendido, ele pode ser melhorado.”
+    </div>
+
+    <hr>
+
+    <h2>📈 Gráficos e Quando Usar</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Gráfico</th>
+          <th>Uso Ideal</th>
+          <th>Evite se...</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Colunas</strong></td>
+          <td>Comparar categorias</td>
+          <td>Tiver mais de 10 categorias</td>
+        </tr>
+        <tr>
+          <td><strong>Linhas</strong></td>
+          <td>Mostrar tendências ao longo do tempo</td>
+          <td>Tiver menos de 3 pontos de tempo</td>
+        </tr>
+        <tr>
+          <td><strong>Pizza</strong></td>
+          <td>Mostrar proporções</td>
+          <td>Tiver mais de 6 fatias</td>
+        </tr>
+        <tr>
+          <td><strong>Dispersão</strong></td>
+          <td>Visualizar correlações</td>
+          <td>Os eixos não forem numéricos</td>
+        </tr>
+        <tr>
+          <td><strong>Mapa de Calor</strong></td>
+          <td>Destacar intensidade de valores</td>
+          <td>As cores não tiverem contraste suficiente</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2>⚙️ Ferramenta 1: Power BI</h2>
+    <p>
+      O <strong>Power BI</strong> é a ferramenta mais popular de BI (Business Intelligence).
+      Ele permite conectar bancos de dados, planilhas e APIs, criar gráficos interativos e publicar dashboards online.
+    </p>
+
+    <pre class="pretty-code"><code>
+# Passos básicos no Power BI:
+1. Conecte suas fontes (Excel, SQL, Web, API)
+2. Trate e modele os dados no Power Query
+3. Crie relações entre tabelas
+4. Construa visuais no editor
+5. Publique no Power BI Service (para web)
+    </code></pre>
+
+    <div class="tip-box">
+      💡 <strong>Dica:</strong>  
+      Use <strong>segmentações visuais</strong> e <strong>cartões de KPI</strong> para tornar o painel interativo.
+    </div>
+
+    <hr>
+
+    <h2>🌐 Ferramenta 2: Google Data Studio (Looker Studio)</h2>
+    <p>
+      O <strong>Data Studio</strong> (agora Looker Studio) é uma opção gratuita e online para criar dashboards com integração direta ao Google Sheets, BigQuery e outras fontes.
+    </p>
+
+    <pre class="pretty-code"><code>
+# Exemplo de fluxo:
+1. Conecte um Google Sheets com suas métricas
+2. Escolha “Adicionar gráfico” → “Série temporal”
+3. Adicione filtros interativos (por data, categoria, etc.)
+4. Publique o link e compartilhe com permissões
+    </code></pre>
+
+    <div class="tip-box">
+      🔍 <strong>Extra:</strong>  
+      Você pode embutir dashboards do Looker Studio em sites e portais internos.
+    </div>
+
+    <hr>
+
+    <h2>🐍 Ferramenta 3: Streamlit (Python)</h2>
+    <p>
+      O <strong>Streamlit</strong> é uma biblioteca Python que transforma scripts em dashboards web interativos, ideais para cientistas de dados.
+    </p>
+
+    <pre class="pretty-code"><code>
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+
+st.title("📊 Dashboard de Vendas")
+
+# Dados simulados
+dados = pd.DataFrame({
+    "Mês": ["Jan", "Fev", "Mar", "Abr", "Mai"],
+    "Vendas": [100, 120, 150, 130, 180]
+})
+
+# Gráfico
+fig, ax = plt.subplots()
+ax.plot(dados["Mês"], dados["Vendas"], marker="o")
+st.pyplot(fig)
+
+st.metric("Vendas Totais", sum(dados["Vendas"]))
+    </code></pre>
+
+    <div class="tip-box">
+      💡 <strong>Vantagem:</strong>  
+      Ideal para prototipar dashboards de Machine Learning e automações de relatórios.
+    </div>
+
+    <hr>
+
+    <h2>📖 Storytelling com Dados</h2>
+    <p>
+      Visualização sem contexto é só decoração.  
+      O verdadeiro poder dos dados vem quando você **conta uma história com propósito**.
+    </p>
+
+    <ol>
+      <li>Apresente o contexto — o “porquê” da análise</li>
+      <li>Mostre o conflito — o problema ou insight</li>
+      <li>Construa a tensão — explore o que os dados revelam</li>
+      <li>Entregue a resolução — a resposta que o público buscava</li>
+      <li>Finalize com ação — o que deve ser feito agora?</li>
+    </ol>
+
+    <div class="exercise-box">
+      🧠 <strong>Desafio:</strong>  
+      Pegue uma planilha comum e crie uma história visual:  
+      <ul>
+        <li>Qual é o problema?</li>
+        <li>Qual insight você descobriu?</li>
+        <li>Qual ação você recomenda?</li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <h2>🧠 Dicas Avançadas</h2>
+    <ul>
+      <li>🎯 Mantenha um foco por página</li>
+      <li>🧩 Use hierarquias (título → métrica → detalhe)</li>
+      <li>🎨 Paleta: use no máximo 5 cores — e evite saturadas</li>
+      <li>📏 Mantenha alinhamentos e espaçamentos consistentes</li>
+      <li>⚙️ Pense como UX designer: menos cliques = melhor experiência</li>
+    </ul>
+
+    <hr>
+
+    <h2>📊 Boas Práticas de Dashboard</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Faça</th>
+          <th>Evite</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Usar cores neutras e destaque para alertas</td>
+          <td>Fundo preto com texto colorido demais</td>
+        </tr>
+        <tr>
+          <td>Contar uma história com início, meio e fim</td>
+          <td>Mostrar todos os dados de uma vez</td>
+        </tr>
+        <tr>
+          <td>Usar métricas de negócio</td>
+          <td>Encher de dados irrelevantes</td>
+        </tr>
+        <tr>
+          <td>Testar em telas diferentes (mobile, desktop)</td>
+          <td>Assumir que todo mundo tem o mesmo monitor</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h2>🏁 Conclusão</h2>
+    <p>
+      Um bom dashboard não é só bonito — ele é <strong>funcional, claro e convincente</strong>.  
+      É a tradução visual de toda a jornada que você percorreu desde o primeiro dado bruto até o insight final.
+    </p>
+
+    <div class="tip-box">
+      💬 <strong>Frase para levar:</strong>  
+      “O analista de dados coleta e organiza.  
+      O cientista de dados analisa e modela.  
+      O contador de histórias com dados... muda decisões.”
+    </div>
+
+    <div class="chapter-nav">
+      <a href="bigdata.html" class="nav-link">← Capítulo 7: Big Data</a>
+      <a href="../index.html" class="nav-link">🏁 Voltar ao Início</a>
+    </div>
+  </main>
+</body>
+</html>

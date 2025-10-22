@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Capítulo 3 - Python para Análise de Dados</title>
+  <link rel="stylesheet" href="style/style-pages.css" />
+</head>
+
+<body>
+  <header>
+    <h1>🐍 Capítulo 3 — Python para Análise de Dados</h1>
+  </header>
+
+  <main>
+    <h2>✨ Por que Python é o coração da análise de dados</h2>
+    <p>
+      Python é uma linguagem simples, poderosa e extremamente popular entre analistas e cientistas de dados.
+      Ela nasceu em 1991, criada por Guido van Rossum, e hoje é a principal linguagem em áreas como automação,
+      inteligência artificial e ciência de dados.
+    </p>
+
+    <div class="tip-box">
+      💡 <strong>Dica:</strong> Se você nunca programou, Python é o melhor ponto de partida.
+      A sintaxe é quase "humana" — você vai ler e entender o que está acontecendo sem precisar decorar comandos obscuros.
+    </div>
+
+    <h2>🎯 O que você vai aprender</h2>
+    <ul>
+      <li>Entender o que são variáveis e tipos de dados</li>
+      <li>Usar estruturas de controle (condições e repetições)</li>
+      <li>Manipular listas, tuplas e dicionários</li>
+      <li>Ler e processar arquivos de dados (CSV, JSON)</li>
+      <li>Analisar e visualizar dados com <strong>Pandas</strong> e <strong>Matplotlib</strong></li>
+    </ul>
+
+    <hr>
+
+    <h2>🧩 Variáveis e tipos de dados</h2>
+    <p>
+      Variáveis são como “caixas” onde você guarda informações.  
+      Elas podem armazenar textos, números, listas, e até objetos inteiros.
+    </p>
+
+    <pre class="pretty-code"><code>
+<span class="comment"># Exemplo simples</span>
+<span class="keyword">nome</span> = <span class="string">"Natan"</span>
+<span class="keyword">idade</span> = <span class="number">28</span>
+<span class="keyword">altura</span> = <span class="number">1.78</span>
+<span class="keyword">ativo</span> = <span class="keyword">True</span>
+
+<span class="function">print</span>(nome, idade, altura, ativo)
+    </code></pre>
+
+    <p><strong>Tipos primitivos principais:</strong></p>
+    <ul>
+      <li><code>int</code> → números inteiros</li>
+      <li><code>float</code> → números decimais</li>
+      <li><code>str</code> → textos (strings)</li>
+      <li><code>bool</code> → valores lógicos (True/False)</li>
+    </ul>
+
+    <div class="exercise-box">
+      🎮 <strong>Exercício 1:</strong><br>
+      Crie variáveis com seu nome, idade, cidade e profissão, e exiba uma frase como:<br>
+      <pre><code>"Meu nome é Ana, tenho 25 anos e moro em São Paulo."</code></pre>
+    </div>
+
+    <hr>
+
+    <h2>🔁 Estruturas de controle</h2>
+    <p>
+      Programar é tomar decisões.  
+      O Python faz isso com estruturas condicionais (<code>if</code>) e repetições (<code>for</code> e <code>while</code>).
+    </p>
+
+    <pre class="pretty-code"><code>
+<span class="keyword">idade</span> = <span class="number">20</span>
+
+<span class="keyword">if</span> idade >= <span class="number">18</span>:
+    <span class="function">print</span>(<span class="string">"Maior de idade"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Menor de idade"</span>)
+    </code></pre>
+
+    <p>Agora, veja um exemplo com <code>for</code>:</p>
+
+    <pre class="pretty-code"><code>
+<span class="keyword">for</span> numero <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">6</span>):
+    <span class="function">print</span>(<span class="string">f"Número {numero}"</span>)
+    </code></pre>
+
+    <div class="tip-box">
+      💡 <strong>Dica:</strong> O <code>range()</code> não inclui o último número.  
+      <code>range(1,6)</code> vai de 1 a 5.
+    </div>
+
+    <hr>
+
+    <h2>🧱 Estruturas de dados</h2>
+
+    <h3>Listas</h3>
+    <p>Listas armazenam vários valores em uma única variável:</p>
+    <pre class="pretty-code"><code>
+frutas = [<span class="string">"maçã"</span>, <span class="string">"banana"</span>, <span class="string">"laranja"</span>]
+<span class="function">print</span>(frutas[<span class="number">0</span>])  <span class="comment"># maçã</span>
+frutas.append(<span class="string">"uva"</span>)
+    </code></pre>
+
+    <h3>Dicionários</h3>
+    <p>Dicionários armazenam dados em pares <code>chave: valor</code>:</p>
+    <pre class="pretty-code"><code>
+pessoa = { <span class="string">"nome"</span>: <span class="string">"Natan"</span>, <span class="string">"idade"</span>: <span class="number">28</span> }
+<span class="function">print</span>(pessoa[<span class="string">"nome"</span>])
+    </code></pre>
+
+    <div class="exercise-box">
+      🎯 <strong>Desafio:</strong><br>
+      Crie uma lista de dicionários com 3 pessoas e suas idades, e mostre quem é o mais velho.
+    </div>
+
+    <hr>
+
+    <h2>📂 Lendo arquivos</h2>
+    <p>
+      Um dos grandes poderes do Python é ler e escrever dados de diversos formatos, como CSV e JSON.
+    </p>
+
+    <pre class="pretty-code"><code>
+<span class="keyword">import</span> csv
+
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"vendas.csv"</span>) <span class="keyword">as</span> arquivo:
+    leitor = csv.reader(arquivo)
+    <span class="keyword">for</span> linha <span class="keyword">in</span> leitor:
+        <span class="function">print</span>(linha)
+    </code></pre>
+
+    <p>Com JSON é ainda mais simples:</p>
+    <pre class="pretty-code"><code>
+<span class="keyword">import</span> json
+
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"dados.json"</span>) <span class="keyword">as</span> arquivo:
+    dados = json.load(arquivo)
+    <span class="function">print</span>(dados[<span class="string">"clientes"</span>])
+    </code></pre>
+
+    <hr>
+
+    <h2>📊 Análise com Pandas</h2>
+    <p>
+      O <strong>Pandas</strong> é a biblioteca mais usada para análise de dados em Python.
+      Ele transforma tabelas em estruturas chamadas <code>DataFrames</code>, que você pode filtrar, ordenar e agrupar com facilidade.
+    </p>
+
+    <pre class="pretty-code"><code>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+
+df = pd.read_csv(<span class="string">"vendas.csv"</span>)
+<span class="function">print</span>(df.head())
+<span class="function">print</span>(df.describe())
+    </code></pre>
+
+    <p>
+      Você pode filtrar dados assim:
+    </p>
+
+    <pre class="pretty-code"><code>
+filtrado = df[df["Valor"] > 1000]
+<span class="function">print</span>(filtrado)
+    </code></pre>
+
+    <div class="exercise-box">
+      🧠 <strong>Exercício:</strong><br>
+      Crie um DataFrame com dados fictícios de produtos (nome, categoria, preço, estoque).  
+      Depois filtre apenas os produtos com preço acima de 100 e estoque menor que 20.
+    </div>
+
+    <hr>
+
+    <h2>📈 Visualização com Matplotlib</h2>
+    <p>Gráficos são essenciais para contar histórias com dados.  
+    Veja como criar um gráfico simples:</p>
+
+    <pre class="pretty-code"><code>
+<span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
+
+vendas = [100, 200, 300, 250, 400]
+meses = [<span class="string">"Jan"</span>, <span class="string">"Fev"</span>, <span class="string">"Mar"</span>, <span class="string">"Abr"</span>, <span class="string">"Mai"</span>]
+
+plt.plot(meses, vendas, color=<span class="string">"cyan"</span>, marker=<span class="string">"o"</span>)
+plt.title(<span class="string">"Evolução de Vendas"</span>)
+plt.xlabel(<span class="string">"Mês"</span>)
+plt.ylabel(<span class="string">"Vendas"</span>)
+plt.show()
+    </code></pre>
+
+    <div class="tip-box">
+      💡 <strong>Dica:</strong> Combine <code>Pandas</code> com <code>Matplotlib</code> e o poder da análise visual explode!
+    </div>
+
+    <hr>
+
+    <h2>🚀 Mini Projeto Final: Analisando Vendas</h2>
+    <p>Vamos aplicar tudo que aprendemos até aqui com um pequeno projeto de análise real.</p>
+
+    <pre class="pretty-code"><code>
+<span class="keyword">import</span> pandas <span class="keyword">as</span> pd
+<span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
+
+df = pd.read_csv(<span class="string">"vendas.csv"</span>)
+df["Lucro"] = df["Valor"] - df["Custo"]
+
+lucro_mensal = df.groupby("Mês")["Lucro"].sum()
+
+lucro_mensal.plot(kind=<span class="string">"bar"</span>, color=<span class="string">"orchid"</span>)
+plt.title(<span class="string">"Lucro Mensal"</span>)
+plt.show()
+    </code></pre>
+
+    <div class="exercise-box">
+      🎯 <strong>Desafio Extra:</strong><br>
+      Adicione uma coluna com a margem de lucro (%), e identifique qual mês foi mais rentável.
+    </div>
+
+    <hr>
+
+    <h2>🧭 Resumo do Capítulo</h2>
+    <ul>
+      <li>✅ Entendeu a base da linguagem Python</li>
+      <li>✅ Aprendeu a manipular dados com Pandas</li>
+      <li>✅ Criou visualizações com Matplotlib</li>
+      <li>✅ Desenvolveu um mini projeto de análise</li>
+    </ul>
+
+    <div class="tip-box">
+      🎉 Parabéns! Agora você domina o básico de Python para análise de dados.  
+      No próximo capítulo, vamos explorar **visualização avançada de dados** com gráficos e dashboards interativos 📊
+    </div>
+
+    <div class="chapter-nav">
+      <a href="planilhas.html" class="nav-link">← Capítulo 2: Planilhas</a>
+      <a href="visualizacao.html" class="nav-link">Próximo: Visualização →</a>
+    </div>
+  </main>
+</body>
+</html>
